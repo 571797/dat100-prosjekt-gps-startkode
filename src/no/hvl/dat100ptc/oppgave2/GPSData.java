@@ -9,52 +9,48 @@ public class GPSData {
 	protected int antall = 0;
 
 	public GPSData(int n) {
-
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.construtor("GPSData"));
-
-		// TODO - SLUTT
+		this.gpspoints = new GPSPoint[n];
+		antall = 0;
 	}
 
 	public GPSPoint[] getGPSPoints() {
 		return this.gpspoints;
 	}
-	
+
 	protected boolean insertGPS(GPSPoint gpspoint) {
+
+//		protected boolean insertGPS(GPSPoint gpspoint) som setter inn GPS punktet gpspoint i gpspoints-tabellen på 
+//		posisjonen angitt ved objektvariablen antall. Videre skal metoden inkrementere antall slik neste punkt kommmer 
+//		inn på neste posisjon. Metoden skal kun sette inn gpspoint om der er plass i tabellen dvs. hvis antall er strengt 
+//		mindre enn gpspoints.length. Metoden skal returnere true om punktet blev satt inn og false ellers.
 
 		boolean inserted = false;
 
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		if (antall < gpspoints.length) {
+			gpspoints[antall] = gpspoint;
+			antall++;
+			inserted = true;
+		}
 
-		// TODO - SLUTT
+		return inserted;
 	}
 
 	public boolean insert(String time, String latitude, String longitude, String elevation) {
 
-		GPSPoint gpspoint;
-
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-		
+		GPSPoint gpspoint = GPSDataConverter.convert(time, latitude, longitude, elevation);
+		boolean inserted = insertGPS(gpspoint); 
+		return inserted; 
 	}
 
 	public void print() {
 
 		System.out.println("====== Konvertert GPS Data - START ======");
 
-		// TODO - START
+		for (GPSPoint i : gpspoints) {
+			System.out.println(i.toString());
+		}
 
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-		
-		// System.out.println("====== Konvertert GPS Data - SLUTT ======");
+		System.out.println("====== Konvertert GPS Data - SLUTT ======");
 
 	}
 }
